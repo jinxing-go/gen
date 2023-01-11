@@ -1,0 +1,11 @@
+db:
+  host: 127.0.0.0
+  port: 3306
+  name:
+  username: root
+  password:
+model:
+  dirname: "./model"
+  template: ""
+  types:
+    username: "1232323"

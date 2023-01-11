@@ -1,0 +1,7 @@
+.idea/
+.DS_Store
+.env
+/cover.out
+/cover.html
+/cover_total.out
+.run/*

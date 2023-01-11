@@ -1,0 +1,21 @@
+package model
+
+import (
+{{ if $.HasTimestamp }}
+    "time"
+{{ end }}
+)
+
+type {{$.StudlyName}} struct {
+{{- range $.Columns }}
+	{{.StudlyName}} {{.MappingType}} `json:"{{.Field}}" gorm:"{{ if eq .Field $.PrimaryField }}primaryKey;{{end}}column:{{.Field}}"` // {{.Comment}}
+{{- end }}
+}
+
+func (*{{$.StudlyName}}) TableName() string {
+	return "{{$.TableName}}"
+}
+
+func (*{{$.StudlyName}}) PK() string {
+	return "{{$.PrimaryField}}"
+}

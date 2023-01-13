@@ -6,6 +6,7 @@ import (
 {{ end }}
 )
 
+// {{$.StudlyName}} {{$.Comment}}
 type {{$.StudlyName}} struct {
 {{- range $.Columns }}
 	{{.StudlyName}} {{.MappingType}} `json:"{{.Field}}" gorm:"{{ if eq .Field $.PrimaryField }}primaryKey;{{end}}column:{{.Field}}"` // {{.Comment}}

@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/jinxing-go/gen/pkg/util"
 )
@@ -152,7 +153,7 @@ func (t *Table) queryColumns(db *sql.DB) error {
 
 		t.Columns = append(t.Columns, &TableColumn{
 			Field:   tmpValue.Field,
-			Type:    tmpValue.Type,
+			Type:    toType(tmpValue.Type),
 			Null:    tmpValue.Null.String,
 			Key:     tmpValue.Key.String,
 			Comment: tmpValue.Comment.String,
@@ -160,6 +161,18 @@ func (t *Table) queryColumns(db *sql.DB) error {
 	}
 
 	return nil
+}
+
+func toType(s string) string {
+	if strings.Contains(s, "(") {
+		return strings.Split(s, "(")[0]
+	}
+
+	if strings.Contains(s, " ") {
+		return strings.Split(s, " ")[0]
+	}
+
+	return s
 }
 
 func getType(typeName string, mapType map[string]string) string {

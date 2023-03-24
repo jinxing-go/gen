@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gookit/color"
 	"github.com/jinxing-go/gen/config"
 	"github.com/jinxing-go/gen/pkg/util"
 	"github.com/urfave/cli/v2"
@@ -17,10 +17,9 @@ func main() {
 
 	root, err := util.FindProjectRootPath(".gen.yml")
 	if err != nil {
-		fmt.Println("cannot find project root path", err)
+		color.Errorf("cannot find project root path: %s", err)
 	}
 
-	fmt.Println("root:", root)
 	conf := config.Load(filepath.Join(root, ".gen.yml"))
 	if conf.ProjectPath == "" {
 		conf.ProjectPath = root

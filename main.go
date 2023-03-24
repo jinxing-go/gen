@@ -34,20 +34,6 @@ func main() {
 		Version:  "v1.0.0",
 		Compiled: time.Now(),
 		Commands: commands,
-		Flags: []cli.Flag{
-			&cli.BoolFlag{
-				Name:    "debug",
-				Aliases: []string{"d"},
-				Usage:   "print debug log",
-			},
-		},
-		Before: func(c *cli.Context) error {
-			if c.Bool("debug") {
-				_ = os.Setenv("DEBUG", "true")
-			}
-
-			return nil
-		},
 	}
 
 	if err := app.Run(os.Args); err != nil {

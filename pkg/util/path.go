@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-func FindProjectRootPath() (string, error) {
+func FindProjectRootPath(filename string) (string, error) {
 	dir, err := os.Getwd()
 	if err != nil {
 		return "", err
@@ -18,7 +18,7 @@ func FindProjectRootPath() (string, error) {
 			return "", fmt.Errorf("not found project root path")
 		}
 
-		if _, err := os.Stat(filepath.Join(dir, "go.mod")); err == nil {
+		if _, err := os.Stat(filepath.Join(dir, filename)); err == nil {
 			return dir, nil
 		}
 

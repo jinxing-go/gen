@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -13,13 +14,14 @@ import (
 )
 
 func main() {
-	var conf *config.Config
-	if root, err := util.FindProjectRootPath(); err != nil {
-		conf = config.Load(filepath.Join(root, ".gen.yml"))
-	} else {
-		conf = config.Load("./.gen.yml")
+
+	root, err := util.FindProjectRootPath(".gen.yml")
+	if err != nil {
+		fmt.Println("cannot find project root path", err)
 	}
 
+	fmt.Println("root:", root)
+	conf := config.Load(filepath.Join(root, ".gen.yml"))
 	commands, cleanup := bootstrap(conf)
 	defer cleanup()
 
@@ -45,8 +47,7 @@ func main() {
 		},
 	}
 
-	err := app.Run(os.Args)
-	if err != nil {
+	if err := app.Run(os.Args); err != nil {
 		log.Fatal(err)
 	}
 }

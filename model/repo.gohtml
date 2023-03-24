@@ -1,0 +1,17 @@
+//go:generate gen model --table={{$.TableName}} --repo=true
+
+package repo
+
+import (
+	"app/api/model"
+	"app/pkg/gormx"
+	"gorm.io/gorm"
+)
+
+type {{$.StudlyName}}Repo struct {
+	*gormx.Repo[model.{{$.StudlyName}}]
+}
+
+func New{{$.StudlyName}}Repo(db *gorm.DB) *{{$.StudlyName}}Repo {
+	return &{{$.StudlyName}}Repo{Repo: gormx.NewRepo[model.{{$.StudlyName}}](db)}
+}

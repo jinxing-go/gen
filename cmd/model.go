@@ -19,9 +19,15 @@ func NewModelCommand(gen *model.Generator) ModelCommand {
 				Usage:    "table name, default all tables, eg: --table=orders",
 				Required: true,
 			},
+			&cli.BoolFlag{
+				Name:    "repo",
+				Aliases: []string{"r"},
+				Usage:   "generate repository file, eg: --repo=true",
+				Value:   false,
+			},
 		},
 		Action: func(c *cli.Context) error {
-			if err := gen.Generate(c.String("table")); err != nil {
+			if err := gen.Generate(c.String("table"), c.Bool("repo")); err != nil {
 				color.Red.Printf("generate model error: %v", err)
 			}
 

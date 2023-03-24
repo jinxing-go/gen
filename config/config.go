@@ -9,9 +9,11 @@ import (
 )
 
 type modelConfig struct {
-	Dirname  string            `yaml:"dirname" json:"dirname"`   // 目录
-	Template string            `yaml:"template" json:"template"` // 模板地址
-	Types    map[string]string `yaml:"types" json:"types"`       // 类型映射
+	Dirname      string            `yaml:"dirname" json:"dirname"`             // 目录
+	Template     string            `yaml:"template" json:"template"`           // 模板地址
+	RepoDirname  string            `yaml:"repo_dirname" json:"repo_dirname"`   // repo 目录
+	RepoTemplate string            `yaml:"repo_template" json:"repo_template"` // repo 模板地址
+	Types        map[string]string `yaml:"types" json:"types"`                 // 类型映射
 }
 
 type Config struct {

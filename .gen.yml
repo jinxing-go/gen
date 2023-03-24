@@ -8,4 +8,4 @@ model:
   dirname: "./model"
   template: ""
   types:
-    username: "1232323"
+    datetime: "time.Time"

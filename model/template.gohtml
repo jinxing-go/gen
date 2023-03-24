@@ -4,11 +4,11 @@
 
 package model
 
-import (
 {{ if $.HasTimestamp }}
+import (
     "time"
-{{ end }}
 )
+{{ end }}
 
 // {{$.StudlyName}} {{$.Comment}}
 type {{$.StudlyName}} struct {

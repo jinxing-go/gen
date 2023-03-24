@@ -37,7 +37,7 @@ model:
 ## 使用
 
 ```bash
-gen model --table=table_name
+gen model --table=table_name --repo=true
 ```
 
 ### 模板

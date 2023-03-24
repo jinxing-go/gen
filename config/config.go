@@ -15,8 +15,10 @@ type modelConfig struct {
 }
 
 type Config struct {
-	DB    dbConfig    `yaml:"db" json:"db"`
-	Model modelConfig `yaml:"model" json:"model"`
+	// 项目目录
+	ProjectPath string      `yaml:"project_path" json:"project_ath"`
+	DB          dbConfig    `yaml:"db" json:"db"`
+	Model       modelConfig `yaml:"model" json:"model"`
 }
 
 func Load(filename string) *Config {

@@ -22,6 +22,10 @@ func main() {
 
 	fmt.Println("root:", root)
 	conf := config.Load(filepath.Join(root, ".gen.yml"))
+	if conf.ProjectPath == "" {
+		conf.ProjectPath = root
+	}
+
 	commands, cleanup := bootstrap(conf)
 	defer cleanup()
 

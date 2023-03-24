@@ -45,7 +45,7 @@ func (m *Generator) Generate(tableName string) error {
 	}
 
 	// 写入目录
-	filename := filepath.Join(m.Config.Model.Dirname, fmt.Sprintf("%s.go", table.TableName))
+	filename := filepath.Join(m.Config.ProjectPath, m.Config.Model.Dirname, fmt.Sprintf("%s.go", table.TableName))
 	if err := util.WriteFile(filename, content); err != nil {
 		return err
 	}

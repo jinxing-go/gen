@@ -94,15 +94,16 @@ func NewTable(db *sql.DB, dbName, tableName string, mapType map[string]string) (
 	}
 
 	for _, column := range table.Columns {
-		if util.Includes(column.Type, []string{TypeDate, TypeTime, TypeYear, TypeDatetime, TypeTimestamp}) {
-			table.HasTimestamp = true
-		}
 
 		column.StudlyName = util.Studly(column.Field)
 		column.MappingType = getType(column.Type, mapType)
 		if column.Key == KeyPrimaryKey {
 			table.PrimaryKey = column
 			table.PrimaryField = column.Field
+		}
+
+		if column.MappingType == "time.Time" {
+			table.HasTimestamp = true
 		}
 	}
 
